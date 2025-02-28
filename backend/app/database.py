@@ -5,16 +5,17 @@ import os
 from dotenv import load_dotenv
 from pathlib import Path
 
-# Explicitly find the .env file
-env_path = Path(__file__).resolve().parent.parent / ".env"
+# Define the path to the .env file
+env_path = Path(__file__).resolve().parent.parent / '.env'
+
+# Load environment variables from the .env file
 load_dotenv(dotenv_path=env_path)
 
-# Fetch DATABASE_URL from .env
-DATABASE_URL = os.getenv("DATABASE_URL")
+# Retrieve the DATABASE_URL environment variable
+DATABASE_URL = os.getenv('DATABASE_URL')
 
-# If DATABASE_URL is still None, raise an error
 if DATABASE_URL is None:
-    raise ValueError("DATABASE_URL is not loading. Check your .env file placement and formatting.")
+    raise ValueError("DATABASE_URL is not set. Please check your .env file.")
 
 # Create the database engine
 engine = create_engine(DATABASE_URL)
